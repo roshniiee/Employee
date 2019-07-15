@@ -1,0 +1,457 @@
+Employee Management System          
+
+Problem Statement: A XYZ company requires software for maintaining information of their Employees. Software should have functionality to add new Employee information and search Employee information with respect to employee id and also to get all employee information.
+
+Display Menu as given below.
+
+1-Add Employee
+
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+ 
+
+1. Add Employee Information                                                     
+
+When the user select this menu option, it allow to enter the employee details. All the details entered should be added successfully to HashMap, 
+and it should print the message “Employee Information stored successfully for <EmpId>”. 
+
+
+In the HashMap<Integer,Employee> - here key is the employee id and value is the Employee object.
+
+Note:   Validation should be taken care for all input fields.
+
+ 
+
+-      Name of employee should contain only alphabets.  It should contain minimum 3 characters. The first letter should be capital and all the rest should be in lower case.
+
+o    The main method should have a while loop for name validation.  If the input is invalid, display the message,  "Name is invalid"  and get the input again until user enters a valid name.
+
+-      Salary should be greater than 0.
+
+o    The main method should have a while loop for salary validation.  If the input is invalid, display the message,  "Salary should be greater than zero"  and get the input again until user enters a valid value.
+
+-      Validation of input should be done in EmployeeServiceImpl class. Invoke those methods from main method in Client class to perform validation.
+
+ 
+
+-      The entire program should be executed within a loop. It should not terminate after completion of a functionality. It should terminate with a message "END" when the choice provided is 4.
+
+-      If a choice other than 1 to 4 is provided display message as "Enter correct choice" and continue.
+
+2. Get All Employee Details                                               
+
+When this option is selected, application should display all Employee Details stored in the HashMap<Integer,Employee> in the format as shown in the sample input / output.
+
+ 
+
+If the map is empty, exception should be generated and handled in main method with the message “ No employee found“.
+
+ 
+
+3. Get Employee by Id                                           
+
+When this option is selected, application should accept the Employee ID from the user and display the Employee details for valid Employee ID.
+
+ For invalid Employee ID exception should be generated and handled in main method with the message “There is no Employee with this ID”.
+
+Marks Distribution:
+
+
+Parameter
+
+Marks
+
+DML
+
+30
+
+DAO(Inserting the details into the map)
+
+10
+
+Presentation
+
+17
+
+Service and Bean
+
+10
+
+Retrieval
+
+18
+
+DAO(Displaying record by EmpId)
+
+6
+
+DAO(Displaying All records)
+
+5
+
+Common Parameters
+
+17
+
+Validation of input
+
+7
+
+Comments and best practices/standards
+
+5
+
+Proper Exception handling
+
+5
+
+Log4j and Junit
+
+5
+
+Testing the validate functionality with Junit for DAO methods
+
+5
+
+Total
+
+70
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Classes to be created
+
+ 
+
+com.cg.empapp.dao
+
+ 
+
+public interface EmployeeDao {
+
+ 
+
+      public void insertEmployee(Employee emp);
+
+      public HashMap<Integer,Employee>getAllEmployees() throws EmployeeException;
+
+      public Employee getEmployeeById(int id)throws EmployeeException;
+
+     
+
+}
+
+ 
+
+public class EmployeeDaoImpl implements EmployeeDao{
+
+ 
+
+      private static HashMap<Integer,Employee> map = new                                                     
+
+                                            HashMap<Integer,Employee>();
+
+ 
+
+      //Getter and Setter for map  
+
+      public static void setMap(HashMap<Integer,Employee> map)
+
+      {
+
+            EmployeeDaoImpl.map=map;
+
+      } 
+
+ 
+
+      public static HashMap<Integer,Employee> getMap()
+
+      {
+
+            return map;
+
+      } 
+
+ 
+
+//implement interface methods
+
+}
+
+ 
+
+com.cg.empapp.service
+
+ 
+
+public interface EmployeeService {
+
+ 
+
+      public void insertEmployee(Employee emp;
+
+      public HashMap<Integer,Employee>getAllEmployees() throws EmployeeException;
+
+      public Employee getEmployeeById(int id)throws EmployeeException;
+
+     
+
+}
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+//implement interface methods
+
+ 
+
+//Method to validate employee name
+
+       public boolean isEmpNameValid(String empName){.....}
+
+ 
+
+//Method to validate employee salary
+
+       public boolean isEmpSalValid(int empSal){.....}
+
+ 
+
+}
+
+ 
+
+ 
+
+com.cg.empapp.ui
+
+public class Client {
+
+ 
+
+      public static void main(String[] args) {
+
+       //implement a menu driven program based on sample input / output shown
+
+}
+
+}
+
+ 
+
+com.cg.empapp.dto
+
+ 
+
+public class Employee
+
+{
+
+      private int empId;
+
+      private String empName;
+
+      private int empSal;
+
+     
+
+      //public getters and setters
+
+ 
+
+      // public 3 argument constructor in the order empId,empName,empSal
+
+}
+
+ 
+
+com.cg.empapp.exception
+
+ 
+
+public class EmployeeException extends Exception
+
+{
+
+ 
+
+}
+
+ 
+
+For JUnit Test
+
+com.cg.empapp.dao
+
+ 
+
+public class EmployeeDaoImplTest
+
+{
+
+}
+
+Sample Input and Output
+
+ 
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+1
+
+Enter the id
+
+101
+
+Enter the name
+
+Peter
+
+Enter the salary
+
+25000
+
+Employee Information stored successfully for 101
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+1
+
+Enter the id
+
+102
+
+Enter the name
+
+Rosy
+
+Enter the salary
+
+30000
+
+Employee Information stored successfully for 102
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+2
+
+Id Name Salary
+
+101 Peter 25000
+
+102 Rosy 30000
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+3
+
+Enter id
+
+102
+
+Id Name Salary
+
+102 Rosy 30000
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+3
+
+Enter id
+
+103
+
+There is no Employee with this ID
+
+1-Add Employee
+
+2-Get All Employee Details
+
+3-Get Employee By Id
+
+4-Exit
+
+Enter your choice:
+
+4
+
+END
